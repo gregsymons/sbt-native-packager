@@ -1,4 +1,4 @@
-.. _FormatsAndArchetypes:
+.. _formats-and-archetypes:
 
 Formats and Archetypes
 ======================

@@ -52,11 +52,9 @@
 
 
 .. toctree::
-   :numbered:
-   :maxdepth: 4
 
    Introduction <introduction/index.rst>
-   Getting Started <gettingstarted/index.rst>
+   Getting Started <gettingstarted.rst>
    Formats <formats/index.rst>
    Archetypes <archetypes/index.rst>
    Recipes <recipes/index.rst>

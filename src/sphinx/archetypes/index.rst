@@ -1,4 +1,4 @@
-.. _Archetypes:
+.. _archetypes:
 
 Project Archetypes
 ##################
@@ -22,7 +22,7 @@ still leveraging the default configuration for other platforms.
 Currently, in the nativepackager these archetypes are available:
 
  * Java Command Line Application
- * Java Server Application
+ * Java Server Application ( SystemV / Upstart / Systemd )
  * Additional Configuration Archetypes (e.g. ClasspathJarPlugin, AshScriptPlugin,..)
 
 

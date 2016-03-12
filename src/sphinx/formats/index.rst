@@ -1,3 +1,5 @@
+.. _packaging-formats:
+
 Packaging Formats
 #################
 

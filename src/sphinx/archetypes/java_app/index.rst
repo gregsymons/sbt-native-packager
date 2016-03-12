@@ -23,53 +23,116 @@ The `JavaAppPackaging` archetype contains the following features.
 Usage
 -----
 
-.. raw:: html
-
-  <div class="row">
-    <div class="col-md-6">
-
-Version 1.0 or higher with sbt 0.13.5 and and higher
+Enable the ``JavaAppPackaging`` plugin in your ``build.sbt`` with
 
 .. code-block:: scala
 
   enablePlugins(JavaAppPackaging)
 
-.. raw:: html
+To create a staging version of your package call
 
-    </div><!-- v1.0 -->
-    <div class="col-md-6">
+.. code-block:: bash
 
-Version 0.8 or lower
+  sbt stage
 
-.. code-block:: scala
+This will create your package in ``target/universal/stage``. To see if your application runs
 
-  import com.typesafe.sbt.SbtNativePackager._
-  import NativePackagerKeys._
+.. code-block:: bash
 
-  packageArchetype.java_application
+  cd target/universal/stage
+  ./bin/<app-name>
 
-.. raw:: html
+This plugin also enables all supported **packaging formats** as well. Currently **all formats** are supported by the java
+app archetype! For example you can build *zips*, *deb* or *docker* by just enabling ``JavaAppPackaging``.
 
-    </div><!-- v0.8 -->
-  </div><!-- row end -->
+.. code-block:: bash
+
+  sbt
+  # create a zip file
+  > universal:packageBin
+  # create a deb file
+  > debian:packageBin
+  # publish a docker image to your local registry
+  > docker:publishLocal
 
 
-Customize
----------
 
-You can customize the bash/bat scripts in different ways. This is explained in
-the :doc:`Customize <customize>` section. The application structure is customizable
-via the standard mappings, which is described in the :doc:`Universal Plugin Section </formats/universal>`.
+Settings & Tasks
+----------------
+
+This is a non extensive list of important settings and tasks this plugin provides. All settings
+have sensible defaults.
+
+  ``makeBashScript``
+    Creates or discovers the bash script used by this project.
+
+  ``makeBatScript``
+    Creates or discovers the bat script used by this project.
+
+  ``bashScriptTemplateLocation``
+    The location of the bash script template.
+
+  ``batScriptTemplateLocation``
+    The location of the bat script template.
+
+  ``bashScriptExtraDefines``
+    A list of extra definitions that should be written to the bash file template.
+
+  ``batScriptExtraDefines``
+    A list of extra definitions that should be written to the bat file template.
 
 
-Sitemap
--------
+Start script options
+--------------------
+
+The start script provides a few standard options you can pass:
+
+  ``-h | -help``
+    Prints script usage
+
+  ``-v | -verbose``
+    Prints out more information
+
+  ``-no-version-check``
+    Don't run the java version check
+
+  ``-jvm-debug <port>``
+    Turn on JVM debugging, open at the given port
+
+  ``-main``
+    Define a custom main class
+
+
+To configure the JVM these options are available
+
+  ``JAVA_OPTS``
+    environment variable, if unset uses "$java_opts"
+
+  ``-Dkey=val``
+    pass -Dkey=val directly to the java runtime
+
+  ``-J-X``
+    pass option -X directly to the java runtime (-J is stripped).
+    E.g. ``-J-Xmx1024``
+
+In order to pass **application arguments** you need to separate the jvm arguments from the
+application arguments with ``--``. For example
+
+.. code-block::
+
+    ./bin/my-app -Dconfig.resource=prod.conf -- -appParam1 -appParam2
+
+
+
+.. include:: customize.rst
+
+
+Advanced
+--------
 
 .. toctree::
-   :maxdepth: 1
 
    gettingstarted
-   my-first-project.rst
-   customize.rst
-   generating-files.rst
-   writing-documentation.rst
+   my-first-project
+   generating-files
+   writing-documentation

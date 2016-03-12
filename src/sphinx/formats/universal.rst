@@ -61,23 +61,12 @@ Required Settings
 
 A universal has no mandatory fields.
 
-
-1.0 or higher
-~~~~~~~~~~~~~
-
 Enable the universal plugin
 
 .. code-block:: scala
 
   enablePlugins(UniversalPlugin)
 
-
-0.8 or lower
-~~~~~~~~~~~~
-
-For this versions universal packaging is automatically activated.
-See the :doc:`Getting Started </gettingstarted>` page for information
-on how to enable sbt native packager.
 
 
 Configurations

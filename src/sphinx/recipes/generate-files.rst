@@ -5,7 +5,7 @@ Let's dynamically (in the build) construct some files that should be included in
 
 
 For the example, let's download a license file for our application and add it to the distribution. First,
-let's create a task which will download a license file.  Add the following to build.sbt 
+let's create a task which will download a license file.  Add the following to build.sbt
 
 .. code-block:: scala
 

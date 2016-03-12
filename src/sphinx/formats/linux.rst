@@ -363,9 +363,48 @@ First we alter the permissions for all ``LinuxPackageMapping`` s that match a sp
 Add Empty Directories
 ~~~~~~~~~~~~~~~~~~~~~
 
-There is a special helper function that allows you to add empty directories to the package mappings. This might be useful if the service needs some location to store files.
+There is a special helper function that allows you to add empty directories to the package mappings. This might be
+useful if the service needs some location to store files.
 
 .. code-block:: scala
 
     // Add an empty folder to mappings
     linuxPackageMappings += packageTemplateMapping(s"/usr/share/${name.value}/lib/native")() withUser(name.value) withGroup(name.value)
+
+Man Pages
+~~~~~~~~~
+
+There are many ways to document your projects, and many ways to expose them.  While the native packager places
+no limit on WHAT is included in a package, there are some things which receive special treatment.
+
+Specifically: linux man pages.
+
+To create a linux man page for the application, let's create a ``src/linux/usr/share/man/man1/example-cli.1`` file
+
+.. code-block:: bash
+
+
+    .\" Process this file with
+    .\" groff -man -Tascii example-cli.1
+    .\"
+    .TH EXAMPLE_CLI 1 "NOVEMBER 2011" Linux "User Manuals"
+    .SH NAME
+    example-cli \- Example CLI
+    .SH SYNOPSIS
+    .B example-cli [-h]
+
+Notice the location of the file.  Any file under ``src/linux`` is automatically included,
+relative to ``/``, in linux packages (deb, rpm).  That means the man file will **not** appear
+in the universal package (confusing linux users).
+
+Now that the man page is created, we can use a few tasks provided to view it in sbt.  Let's look in the sbt console
+
+.. code-block:: bash
+
+    sbt generateManPages
+
+We can use this task to work on the man pages and ensure they'll look OK.  You can also directly use ``groff`` to view
+changes in your man pages.
+
+In addition to providing the means to view the man page, the native packager will also automatically ``gzip`` man pages
+for the distribution.  The resulting man page is stored in ``/usr/share/man/man1/example-cli.1.gz`` in linux distributions.
