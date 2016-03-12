@@ -20,14 +20,14 @@ Version 1.0 or higher with sbt 0.13.5 and and higher
 
     </div><!-- v1.0 -->
     <div class="col-md-6">
-    
+
 Version 0.8 or lower
 
 .. code-block:: scala
 
     import com.typesafe.sbt.SbtNativePackager._
     import NativePackagerKeys._
-    
+
     packageArchetype.java_server // instead of java_application
 
 .. raw:: html
@@ -53,27 +53,21 @@ require the following information:
     packageSummary in Linux := "A small package summary"
 
     packageDescription := "A longer description of your application"
-    
 
-There are additional parameters available to configure. 
+
+There are additional parameters available to configure.
 
 .. code-block:: scala
 
     daemonUser in Linux := normalizedName.value         // user which will execute the application
-    
+
     daemonGroup in Linux := (daemonUser in Linux).value // group which will execute the application
-    
+
 
 The archetype will automatically append/prepend the creation/deletion of the user
 to your packaging for Debian.  *Note:* All specified users are **deleted** on an ``apt-get purge <dpkg>``.
 
-.. raw:: html
-
-  <div class="alert alert-warning" role="alert">
-    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-    It is not a good idea to use <strong>root</strong> as the <code>appUser</code> for services as it represents a security risk.
-  </div>
-
+.. warning:: It is not a good idea to use **root** as the ``daemonUser`` for services as it represents a security risk.
 
 Default Mappings
 ================
@@ -111,7 +105,7 @@ server application with
 ::
 
     debian:packageBin
-    
+
 
 Ubuntu provides two different bootsystems, SystemV and Upstart (default). To switch between
 both you can add this to your ``build.sbt``
@@ -119,22 +113,22 @@ both you can add this to your ``build.sbt``
 .. code-block:: scala
 
     import com.typesafe.sbt.packager.archetypes.ServerLoader.{SystemV, Upstart}
-    
+
     serverLoading in Debian := SystemV
-    
+
 RPM (.rpm)
 ==========
 
 A basic ``build.sbt`` for rpm requires the Linux settings and
 
 .. code-block:: scala
-    
+
     rpmVendor := "Your organization Inc."
-    
+
 Build your rpm package with ::
 
     rpm:packageBin
-    
+
 The output is partially on ``stderr`` which is a bit confusing. If the build
 ends with *success* you are fine.
 
@@ -182,5 +176,3 @@ To build an image, publish locally, and then push to a remote Docker repository,
 
 
 Next, let's look at how to :doc:`customize a java server application <customize>`.
-
-

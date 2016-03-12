@@ -1,12 +1,12 @@
 .. _GettingStarted:
 
-.. contents:: 
+.. contents::
   :depth: 2
 
-Installation
-============
+Getting Started
+###############
 
-The sbt-native-packager is a plugin. To use it, first create a ``project/plugins.sbt`` file with the following content. 
+The sbt-native-packager is a plugin. To use it, first create a ``project/plugins.sbt`` file with the following content.
 
 .. code-block:: scala
 
@@ -31,7 +31,7 @@ but if you only want the bare minimum you can only add the packager plugin
 .. code-block:: scala
 
   enablePlugins(SbtNativePackager)
-  
+
 The autoplugins mechanism will import everything automatically.
 
 Build.scala
@@ -60,7 +60,7 @@ keys yourself. In your ``build.sbt`` or ``Build.scala`` add
 
 
 Packaging Formats
-=================
+-----------------
 
 
 .. raw:: html
@@ -87,7 +87,7 @@ Packaging Formats
       </div>
       <br>
     </div>
-    
+
     <div class="row" style="margin-top:20px;">
       <div class="col-lg-3">
         <h2>*.dmg</h2>
@@ -108,9 +108,9 @@ Packaging Formats
         <a class="btn btn-success" href="formats/universal.html" role="button"><i class="fa fa-file-archive-o"></i> Universal Plugin »</a>
       </div>
       <br>
-    </div> 
-    
-    
+    </div>
+
+
     <div class="row" style="margin-top:20px;">
       <div class="col-lg-3">
         <h2>*.tar</h2>
@@ -131,11 +131,11 @@ Packaging Formats
         <a class="btn btn-success" href="formats/jdkpackager.html" role="button"><i class="fa fa-coffee"></i> JDK Packager Plugin »</a>
       </div>
     </div>
-    
+
     <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css" rel="stylesheet">
 
 Archetypes
-==========
+----------
 
 
 .. raw:: html
@@ -155,19 +155,3 @@ Archetypes
         <a class="btn btn-success" href="archetypes/java_server/" role="button"><i class="fa fa-gears"></i> Learn more »</a>
       </div>
     </div>
-    
-    
-    
-Sitemap
-=======
-
-.. raw:: html
-
-  <hr>
-
-.. toctree::
-   :maxdepth: 2
-   
-   archetypes/index.rst
-   formats/index.rst
-   topics/index.rst

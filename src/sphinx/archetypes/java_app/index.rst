@@ -1,9 +1,11 @@
+.. _java-app-plugin:
+
 Java Application Archetype
 ##########################
 
 Application packaging focuses on how your application is launched (via a ``bash`` or ``bat`` script), how dependencies
 are managed and how configuration and other auxiliary files are included in the final distributable. The `JavaAppPackaging` archetype
-provides a default application structure and executable scripts to launch your application. 
+provides a default application structure and executable scripts to launch your application.
 
 Additionally there is :doc:`Server Packaging </archetypes/java_server/index>` which provides platform-specific
 functionality for installing your application in server environments. You can customize specific debian and rpm packaging
@@ -36,14 +38,14 @@ Version 1.0 or higher with sbt 0.13.5 and and higher
 
     </div><!-- v1.0 -->
     <div class="col-md-6">
-    
+
 Version 0.8 or lower
 
 .. code-block:: scala
 
   import com.typesafe.sbt.SbtNativePackager._
   import NativePackagerKeys._
-  
+
   packageArchetype.java_application
 
 .. raw:: html
@@ -65,7 +67,7 @@ Sitemap
 
 .. toctree::
    :maxdepth: 1
-   
+
    gettingstarted
    my-first-project.rst
    customize.rst

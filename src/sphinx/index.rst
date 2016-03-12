@@ -14,7 +14,7 @@
       <div class="row">
         <div class="col-md-4">
           <h2>Installation</h2>
-          <p>Add the plugin to your <em>plugins.sbt</em>. If you use sbt <em>0.13.5</em> 
+          <p>Add the plugin to your <em>plugins.sbt</em>. If you use sbt <em>0.13.5</em>
           or higher the you have just one line to add to your <em>build.sbt</em>:</p>
           <pre>enablePlugins(SbtNativePackager)</pre>
           <p>We provide a set of plugins. One for each supported format and for each archetype.
@@ -25,7 +25,7 @@
         <div class="col-md-4">
           <h2>Archetypes</h2>
           <p>For common use cases we create so called <em>Archetypes</em>. For a standalone
-          application enabling is as simple 
+          application enabling is as simple
           simple as </p>
           <pre>enablePlugins(JavaAppPackaging)</pre>
           <p>
@@ -52,13 +52,15 @@
 
 
 .. toctree::
-   :maxdepth: 1
-   
-   gettingstarted.rst
-   archetypes/index.rst
-   formats/index.rst
-   topics/index.rst
-   
+   :numbered:
+   :maxdepth: 4
+
+   Introduction <introduction/index.rst>
+   Getting Started <gettingstarted/index.rst>
+   Formats <formats/index.rst>
+   Archetypes <archetypes/index.rst>
+   Recipes <recipes/index.rst>
+
 .. raw:: html
-   
+
    </div>

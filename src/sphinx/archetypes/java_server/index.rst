@@ -1,3 +1,5 @@
+.. _java-server-plugin:
+
 Java Server Application Archetype
 #################################
 
@@ -35,14 +37,14 @@ Version 1.0 or higher with sbt 0.13.5 and and higher
 
     </div><!-- v1.0 -->
     <div class="col-md-6">
-    
+
 Version 0.8 or lower
 
 .. code-block:: scala
 
   import com.typesafe.sbt.SbtNativePackager._
   import NativePackagerKeys._
-  
+
   packageArchetype.java_server
 
 .. raw:: html
@@ -61,8 +63,8 @@ basic application script customization is discussed in :doc:`Java Application Cu
 Service Managers
 ----------------
 
-Platforms are tied to both package managers (Rpm, Debian) and Service Managers (System V, Upstart, SystemD). By 
-default the native packager will configure a service manager to run the daemon process. The available 
+Platforms are tied to both package managers (Rpm, Debian) and Service Managers (System V, Upstart, SystemD). By
+default the native packager will configure a service manager to run the daemon process. The available
 configurations are:
 
 +---------------+--------------------+--------------+
@@ -88,11 +90,9 @@ Sitemap
 
 .. toctree::
    :maxdepth: 1
-   
+
    my-first-project.rst
    customize.rst
 
 
 Next, let's :doc:`get started with simple application <my-first-project>`
-
-

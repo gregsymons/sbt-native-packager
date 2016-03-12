@@ -2,26 +2,21 @@ Customize Java Applications
 ###########################
 
 While the native packager tries to provide robust BASH/BAT scripts for your applications, they may not always be enough.
-The native packager provides a mechanism where the template used to create each script can be customized or directly 
-overridden. 
+The native packager provides a mechanism where the template used to create each script can be customized or directly
+overridden.
 
 The easiest way to add functionality to the default script is by adding ``bashScriptExtraDefines`` :doc:` as described
 in adding configuration for applications </archetypes/java_app/customize>`. Customizing the bash
 script will effect all platform-specific builds. The server archetype provides a further level of customization for
-specific System Loaders and Package types. These template file are described in 
+specific System Loaders and Package types. These template file are described in
 :doc:`configuring servers </archetypes/java_server/customize>`.
 
 Customizing the Application
 ---------------------------
 
-.. raw:: html
-
-  <div class="alert alert-info" role="alert">
-    <span class="glyphicon glyphicon-info-sign" aria-hidden="true"></span>
-    If you plan to use the Java Server Archetype you have <a href="../java_server/customize.html">other options to configure
-    your application</a>.<br> This section is for non-server, standalone applications. However everything will work for server
-    applications as well. 
-  </div>
+.. note:: If you plan to use the Java Server Archetype you have 
+    :ref:`other options to configureyour application <java-server-customize>`. This section is for non-server,
+    standalone applications. However everything will work for server applications as well.
 
 After :doc:`creating a package <my-first-project>`, the very next thing needed, usually, is the ability for users/ops to customize
 the application once it's deployed. Let's add some configuration to the newly deployed application.
@@ -43,18 +38,18 @@ First, you can specify your options via the ``build.sbt``.
     javaOptions in Universal ++= Seq(
         // -J params will be added as jvm parameters
         "-J-Xmx64m",
-        "-J-Xms64m", 
-        
+        "-J-Xms64m",
+
         // others will be added as app parameters
         "-Dproperty=true",
         "-port=8080",
-        
+
         // you can access any build setting/task here
        s"-version=${version.value}"
     )
 
 For the ``-X`` settings you need to add a suffix ``-J`` so the start script will
-recognize these as vm config parameters. 
+recognize these as vm config parameters.
 
 Via Application.ini
 ~~~~~~~~~~~~~~~~~~~
@@ -71,11 +66,11 @@ The second option is to create ``src/universal/conf/application.ini`` with the f
     -Dkey=val
 
     # Turn on JVM debugging, open at the given port
-    # -jvm-debug <port>  
+    # -jvm-debug <port>
 
     # Don't run the java version check
     # -no-version-check
-    
+
     # enabling debug and sending -d as app argument
     # the '--' prevents app-parameter swallowing when
     # using a reserved parameter. See #184
@@ -86,11 +81,11 @@ by the startscript. You can use ``#`` for comments and new lines as you like. Th
 currently doesn't has any variable substitution. We recommend using the ``build.sbt`` if
 you need any information from your build.
 
-The configuration file for bash scripts takes arguments for the BASH file on each line, 
-and allows comments which start with the ``#`` character.  Essentially, this provides 
+The configuration file for bash scripts takes arguments for the BASH file on each line,
+and allows comments which start with the ``#`` character.  Essentially, this provides
 a set of default arguments when calling the script.
 
-By default, any file in the ``src/universal`` directory is packaged. This is a convenient 
+By default, any file in the ``src/universal`` directory is packaged. This is a convenient
 way to include things like licenses, and readmes.
 
 BashScript defines
@@ -101,7 +96,7 @@ bash commands here, but for configurations you have two methods to add jvm and a
 
    bashScriptExtraDefines += """addJava "-Dconfig.file=${app_home}/../conf/app.config""""
    bashScriptExtraDefines += """addApp "--port=8080"""
-   
+
 
 
 Testing the configuration
@@ -116,8 +111,8 @@ Now, if we run the ``stage`` task, we'll see this file show up in the distributi
       lib/
    $ ls target/universal/stage/conf
       application.ini
-      
-      
+
+
 Execute the script in debug mode to see what command line it executes ::
 
     ./target/universal/stage/bin/example-cli -d
@@ -131,18 +126,18 @@ Execute the script in debug mode to see what command line it executes ::
         -cp
         /home/jsuereth/projects/sbt/sbt-native-packager/tutorial-example/target/universal/stage/lib/example-cli.example-cli-1.0.jar:/home/jsuereth/projects/sbt/sbt-native-packager/tutorial-example/target/universal/stage/lib/org.scala-lang.scala-library-2.10.3.jar:/home/jsuereth/projects/sbt/sbt-native-packager/tutorial-example/target/universal/stage/lib/com.typesafe.config-1.2.0.jar
         TestApp
-        
+
 As you can see ``-d`` is a reserved parameter. If you need to use this for your application you can
 use the following syntax ::
 
    ./target/universal/stage/bin/example-cli -- -d
-   
+
 This will prevent the bashscript from interpreting the ``-d`` as the debug parameter
-      
+
 Customize application.ini name
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 
-If you don't like ``application.ini`` as a name, you can change this in the ``build.sbt``. 
+If you don't like ``application.ini`` as a name, you can change this in the ``build.sbt``.
 The default configuration looks like this ::
 
     bashScriptConfigLocation := Some("${app_home}/../conf/application.ini")
@@ -177,7 +172,7 @@ This line modifies the generated BASH script to add the JVM options the location
 .. code-block:: scala
 
     import com.typesafe.config.ConfigFactory
-    
+
     object TestApp extends App {
       val config = ConfigFactory.load()
       println(config.getString("example.greeting"))
@@ -271,7 +266,7 @@ Alternatively, you can use a different file location by setting ``bashScriptTemp
     realpath() {
       # TODO - The original bash template has a robust mechanism to find the true
       #        path to your application, following multiple symlinks.
-      #        
+      #
     }
 
     addJava() {
@@ -282,10 +277,10 @@ Alternatively, you can use a different file location by setting ``bashScriptTemp
     declare -r real_script_path="$(realpath "$0")"
 
     # We have to provide an app_home for the default bash declarations to work.
-	declare -r app_home="$(realpath "$(dirname "$real_script_path")")"
+  declare -r app_home="$(realpath "$(dirname "$real_script_path")")"
 
-	# The auto-generated classpath relies on this variable existing
-	# and pointing at the lib directory.
+  # The auto-generated classpath relies on this variable existing
+  # and pointing at the lib directory.
     declare -r lib_dir="$(realpath "${app_home}/../lib")"
 
     # This line tells the native packager template engine to inject

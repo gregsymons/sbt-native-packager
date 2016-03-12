@@ -53,16 +53,16 @@ These settings configure the path behaviour
 
   ``packageName``
     Defaults to ``normalizedName``. Can be override in different scopes
-    
+
   ``executableScriptName``
     Defaults to ``normalizedName``. Sets the name of the executable starter script
 
   ``defaultLinuxInstallLocation``
     Defaults to ``/usr/share/``. Used to determine the installation path for for linux packages (rpm, debian)
-    
+
   ``defaultLinuxLogsLocation``
     Defaults to ``/var/log/``. Used to determine the log path for linux packages (rpm, debian).
-    
+
 
 JVM Options
 ===========
@@ -76,14 +76,10 @@ The available options are
 
 .. raw:: html
 
-  <div class="alert alert-warning" role="alert">
-    If you want to change the location of your config keep in mind that
-    the path in <strong>bashScriptConfigLocation</strong> should either 
-    <ul>
-    <li>be <strong>absolute</strong> (e.g. <em>/etc/etc-default/my-config</em>) or</li> 
-    <li>starting with <em>${app_home}/../</em> (e.g. <em>${app_home}/../conf/application.ini</em>)</li>
-    </ul>
-  </div>
+.. warning:: If you want to change the location of your config keep in mind that the path in
+   **bashScriptConfigLocation** should either
+    - be **absolute** (e.g. */etc/etc-default/my-config<*) or
+    - starting with *${app_home}/../* (e.g. *${app_home}/../conf/application.ini*)
 
 Extra Defines
 -------------
@@ -97,13 +93,13 @@ For a bash script this could look like this.
 .. code-block:: scala
 
      bashScriptExtraDefines += """addJava "-Dconfig.file=${app_home}/../conf/app.config""""
-     
+
      // or more. -X options don't need to be prefixed with -J
      bashScriptExtraDefines ++= Seq(
         """addJava "-Xms1024m"""",
         """addJava "-Xmx2048m""""
      )
-     
+
 For information take a look at the :doc:` customize section for java apps </archetypes/java_app/customize>`
 
 File - application.ini or etc-default
@@ -118,9 +114,9 @@ Create a file ``src/universal/conf/application.ini`` (gets automatically added t
 and add this to your ``build.sbt`` inject the config location into the bashscript.
 
 .. code-block:: scala
-    
+
     bashScriptConfigLocation := Some("${app_home}/../conf/application.ini")
-    
+
 
 Java Server
 ~~~~~~~~~~~
@@ -129,7 +125,7 @@ See :ref:`server-app-config`
 
 Setting - javaOptions
 ---------------------
-  
+
 The last option to set your java options is using ``javaOptions in Universal`` (JavaApp and Server).
 This will generate files according to your archetype. The following table gives you an overview what
 you can use and how things will be behave if you mix different options. Options lower in the table
