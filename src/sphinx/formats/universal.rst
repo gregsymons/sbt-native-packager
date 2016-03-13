@@ -163,6 +163,8 @@ Currently these task can be customized
   ``universal:package-xz-tarball``
     `universalArchiveOptions in (Universal, packageXzTarball)`
 
+.. _universal-plugin-getting-started-with-packaging:
+
 Getting Started with Universal Packaging
 ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
 By default, all files found in the ``src/universal`` directory are included in the distribution.  So, the first step
